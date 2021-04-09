@@ -2,7 +2,13 @@
   "name": "defantasy",
   "version": "0.0.1",
   "dependencies": {
+    "@hanul/skynode": "^0.0.1",
+    "skyutil": "^0.0.1",
     "ethers": "^5.0.32"
+  },
+  "scripts": {
+    "webpack-dev": "webpack --mode development --watch --config webpack.config.dev.js",
+    "webpack-prod": "webpack --mode production --config webpack.config.prod.js"
   },
   "devDependencies": {
     "ts-loader": "^8.0.13",

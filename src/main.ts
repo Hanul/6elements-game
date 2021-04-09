@@ -1,5 +1,6 @@
 import { BodyNode, el } from "@hanul/skynode";
 import GameBoard from "./game/GameBoard";
+import RewardPanel from "./ui/RewardPanel";
 
 BodyNode.style({
     background: "#faf8ef",
@@ -33,6 +34,7 @@ el("div",
             color: "#776e65",
         },
     }),
+    new RewardPanel(),
     new GameBoard(),
     el("div",
         {

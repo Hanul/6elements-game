@@ -29,7 +29,7 @@ export default class GameBoard extends DomNode {
 
         await SkyUtil.repeat(this.mapHeight, async (y) => {
             await SkyUtil.repeat(this.mapWidth, async (x) => {
-                this.cells[`${x},${y}`] = new Cell().appendTo(this);
+                this.cells[`${x},${y}`] = new Cell(x, y).appendTo(this);
                 const armyData = await Contract.getArmy(x, y);
                 console.log(armyData);
             });

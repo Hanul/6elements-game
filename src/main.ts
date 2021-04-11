@@ -22,6 +22,9 @@ import RewardPanel from "./ui/RewardPanel";
             el("a.button", "Be Summoner", {
                 click: () => { },
             }),
+            el("a.button", "Buy Energy", {
+                click: () => Contract.buyEnergy(10),
+            }),
             el("a.button", "Be Supporter", {
                 click: () => { },
             }),

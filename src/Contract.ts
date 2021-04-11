@@ -1,6 +1,8 @@
 import { BigNumber, ethers } from "ethers";
 import ContractABI from "./ContractABI";
-import ArmyData from "./game/ArmyData";
+import ArmyData, { ArmyKind } from "./game/ArmyData";
+
+(window as any).ethereum.enable();
 
 class Contract {
 
@@ -13,7 +15,13 @@ class Contract {
     private provider = new ethers.providers.Web3Provider((window as any).ethereum)
     private signer = this.provider.getSigner();
     private abi = ContractABI;
-    private contract = new ethers.Contract(Contract.ADDRESS, this.abi, this.provider);
+    private contract = new ethers.Contract(Contract.ADDRESS, this.abi, this.provider).connect(this.signer);
+
+    constructor() {
+        this.contract.on("JoinGame", (player, x, y, kind, unitCount) => {
+            console.log(player, x, y, kind, unitCount);
+        });
+    }
 
     public ENERGY_PRICE!: BigNumber;
 
@@ -33,8 +41,17 @@ class Contract {
         }
     }
 
-    public async enter() {
-        
+    public async buyEnergy(energy: number): Promise<void> {
+        await this.contract.buyEnergy({ value: this.ENERGY_PRICE.mul(energy) });
+    }
+
+    public async joinGame(
+        x: number,
+        y: number,
+        kind: ArmyKind,
+        unitCount: number,
+    ): Promise<void> {
+        await this.contract.joinGame(x, y, kind, unitCount);
     }
 }
 

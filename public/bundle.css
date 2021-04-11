@@ -1,0 +1,253 @@
+/*
+https://github.com/Hanul/sky-css-base
+v0.0.1 | 20210109
+Author: Sim Young Jae
+License: MIT
+*/
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanskr/v13/PbykFmXiEBPT4ITbgNA5Cgm20A.otf) format('opentype');
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+*,
+*:focus {
+  outline: 0;
+}
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+a,
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  cursor: pointer;
+}
+button,
+input {
+  border: none;
+}
+[hidden] {
+  display: none !important;
+}
+[contenteditable] {
+  -webkit-tap-highlight-color: transparent;
+}
+.float-wrapper:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+@font-face {
+  font-family: "font1";
+  src: url("font1.ttf");
+}
+@font-face {
+  font-family: "font2";
+  src: url("font2.ttf");
+}
+body {
+  background: #faf8ef;
+}
+h1 {
+  font-family: "font1";
+  font-size: 80px;
+  color: #776e65;
+}
+.game-description {
+  font-size: 18px;
+  color: #776e65;
+}
+.game-board-container {
+  text-align: center;
+  padding: 20px 0;
+}
+.button-container:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.button-container .button {
+  float: left;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.button-container .button:last-of-type {
+  float: right;
+}
+.gameboard {
+  display: inline-grid;
+  background: #bbada0;
+}
+.gameboard .cell {
+  background: rgba(238, 228, 218, 0.35);
+}
+@media only screen and (min-width: 960px) {
+  .gameboard {
+    grid-gap: 6px;
+    padding: 6px;
+    border-radius: 6px;
+  }
+  .gameboard .cell {
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+  }
+}
+@media only screen and (max-width: 959px) {
+  .gameboard {
+    grid-gap: 7.5px;
+    padding: 7.5px;
+    border-radius: 8px;
+  }
+  .gameboard .cell {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+  }
+}
+

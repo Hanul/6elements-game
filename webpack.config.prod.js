@@ -1,5 +1,6 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'production',
@@ -16,6 +17,7 @@ module.exports = {
     },
     entry: {
         'bundle': './src/main.ts',
+        __less: './public/style/main.less',
     },
     module: {
         rules: [
@@ -32,13 +34,27 @@ module.exports = {
                 ],
                 exclude: /node_modules/,
             },
+            {
+                test: /\.less$/,
+                use: [MiniCssExtractPlugin.loader, {
+                    loader: 'css-loader',
+                    options: {
+                        url: false,
+                    }
+                }, 'less-loader'],
+            },
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js', '.less'],
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'public'),
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'bundle.css'
+        })
+    ],
 };

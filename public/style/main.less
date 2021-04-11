@@ -1,0 +1,50 @@
+@import "base.less";
+
+@font-face {
+    font-family: "font1";
+    src        : url("font1.ttf");
+}
+
+@font-face {
+    font-family: "font2";
+    src        : url("font2.ttf");
+}
+
+body {
+    background: #faf8ef;
+}
+
+h1 {
+    font-family: "font1";
+    font-size  : 80px;
+    color      : #776e65;
+}
+
+.game-description {
+    font-size: 18px;
+    color    : #776e65;
+}
+
+.game-board-container {
+    text-align: center;
+    padding   : 20px 0;
+}
+
+.button-container {
+    .float-wrapper();
+
+    .button {
+        float        : left;
+        background   : #8f7a66;
+        color        : #f9f6f2;
+        line-height  : 42px;
+        padding      : 0 20px;
+        border-radius: 3px;
+
+        &:last-of-type {
+            float: right;
+        }
+    }
+}
+
+@import "gameboard.less";

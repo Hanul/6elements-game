@@ -1,0 +1,32 @@
+.gameboard {
+    display   : inline-grid;
+    background: #bbada0;
+
+    .cell {
+        background: rgba(238, 228, 218, 0.35);
+    }
+
+    @media @pc {
+        grid-gap     : 6px;
+        padding      : 6px;
+        border-radius: 6px;
+
+        .cell {
+            width        : 60px;
+            height       : 60px;
+            border-radius: 3px;
+        }
+    }
+
+    @media @tablet-and-phone {
+        grid-gap     : 7.5px;
+        padding      : 7.5px;
+        border-radius: 8px;
+
+        .cell {
+            width        : 75px;
+            height       : 75px;
+            border-radius: 4px;
+        }
+    }
+}

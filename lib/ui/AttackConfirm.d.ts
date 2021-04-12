@@ -1,5 +1,5 @@
-import { ClosableFloatingDomNode, Position } from "@hanul/skynode";
-export default class AttackConfirm extends ClosableFloatingDomNode {
-    constructor(position: Position);
+import { Popup } from "@hanul/skynode";
+export default class AttackConfirm extends Popup {
+    constructor();
 }
 //# sourceMappingURL=AttackConfirm.d.ts.map

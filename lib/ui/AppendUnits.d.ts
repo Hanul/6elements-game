@@ -1,5 +1,5 @@
-import { ClosableFloatingDomNode, Position } from "@hanul/skynode";
-export default class AppendUnits extends ClosableFloatingDomNode {
-    constructor(position: Position);
+import { Popup } from "@hanul/skynode";
+export default class AppendUnits extends Popup {
+    constructor();
 }
 //# sourceMappingURL=AppendUnits.d.ts.map

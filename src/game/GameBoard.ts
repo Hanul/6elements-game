@@ -1,6 +1,6 @@
 import { DomNode } from "@hanul/skynode";
 import SkyUtil from "skyutil";
-import Contract from "../Contract";
+import DefantasyContract from "../DefantasyContract";
 import Army from "./Army";
 import Cell from "./Cell";
 
@@ -18,8 +18,8 @@ export default class GameBoard extends DomNode {
 
     private async loadBoard() {
 
-        this.mapWidth = await Contract.getMapWidth();
-        this.mapHeight = await Contract.getMapHeight();
+        this.mapWidth = await DefantasyContract.getMapWidth();
+        this.mapHeight = await DefantasyContract.getMapHeight();
 
         this.empty();
         this.style({
@@ -27,11 +27,9 @@ export default class GameBoard extends DomNode {
             gridTemplateRows: `repeat(${this.mapWidth}, auto)`,
         });
 
-        await SkyUtil.repeat(this.mapHeight, async (y) => {
-            await SkyUtil.repeat(this.mapWidth, async (x) => {
+        SkyUtil.repeat(this.mapHeight, (y) => {
+            SkyUtil.repeat(this.mapWidth, (x) => {
                 this.cells[`${x},${y}`] = new Cell(x, y).appendTo(this);
-                const armyData = await Contract.getArmy(x, y);
-                console.log(armyData);
             });
         });
     }

@@ -1,8 +1,9 @@
-import { ClosableFloatingDomNode, Position } from "@hanul/skynode";
+import { el, Popup } from "@hanul/skynode";
 
-export default class AppendUnits extends ClosableFloatingDomNode {
+export default class AppendUnits extends Popup {
 
-    constructor(position: Position) {
-        super(position, document.createElement("div"));
+    constructor() {
+        super(".popup");
+        this.append(el(".content.append-units"));
     }
 }

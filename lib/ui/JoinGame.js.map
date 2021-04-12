@@ -1,1 +1,1 @@
-{"version":3,"file":"JoinGame.js","sourceRoot":"","sources":["../../src/ui/JoinGame.ts"],"names":[],"mappings":";;AAAA,4CAAmE;AAEnE,MAAqB,QAAS,SAAQ,iCAAuB;IAEzD,YAAY,QAAkB;QAC1B,KAAK,CAAC,QAAQ,EAAE,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC,CAAC;IACnD,CAAC;CACJ;AALD,2BAKC"}
+{"version":3,"file":"JoinGame.js","sourceRoot":"","sources":["../../src/ui/JoinGame.ts"],"names":[],"mappings":";;AAAA,4CAAuC;AAEvC,MAAqB,UAAW,SAAQ,eAAK;IAEzC;QACI,KAAK,CAAC,cAAc,CAAC,CAAC;IAC1B,CAAC;CACJ;AALD,6BAKC"}

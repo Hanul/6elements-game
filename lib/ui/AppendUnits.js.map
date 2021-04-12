@@ -1,1 +1,1 @@
-{"version":3,"file":"AppendUnits.js","sourceRoot":"","sources":["../../src/ui/AppendUnits.ts"],"names":[],"mappings":";;AAAA,4CAAmE;AAEnE,MAAqB,WAAY,SAAQ,iCAAuB;IAE5D,YAAY,QAAkB;QAC1B,KAAK,CAAC,QAAQ,EAAE,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC,CAAC;IACnD,CAAC;CACJ;AALD,8BAKC"}
+{"version":3,"file":"AppendUnits.js","sourceRoot":"","sources":["../../src/ui/AppendUnits.ts"],"names":[],"mappings":";;AAAA,4CAA2C;AAE3C,MAAqB,WAAY,SAAQ,eAAK;IAE1C;QACI,KAAK,CAAC,QAAQ,CAAC,CAAC;QAChB,IAAI,CAAC,MAAM,CAAC,YAAE,CAAC,uBAAuB,CAAC,CAAC,CAAC;IAC7C,CAAC;CACJ;AAND,8BAMC"}

@@ -1,30 +1,25 @@
 import { BodyNode, el } from "@hanul/skynode";
-import Contract from "./Contract";
+import DefantasyContract from "./DefantasyContract";
 import GameBoard from "./game/GameBoard";
-import RewardPanel from "./ui/RewardPanel";
+import BuyEnergy from "./ui/BuyEnergy";
+import EnergyPanel from "./ui/EnergyPanel";
+import SeasonPanel from "./ui/SeasonPanel";
 
 (async () => {
-    await Contract.loadConstants();
+    await DefantasyContract.loadConstants();
 
-    el("div",
-        {
-            style: {
-                width: 534,
-            },
-        },
+    el(".game-container",
         el("h1", "Defantasy"),
+        new SeasonPanel(),
         el("p.game-description", "This is defantasy game."),
-        new RewardPanel(),
         el(".game-board-container",
             new GameBoard(),
         ),
         el(".button-container",
-            el("a.button", "Be Summoner", {
-                click: () => { },
-            }),
             el("a.button", "Buy Energy", {
-                click: () => Contract.buyEnergy(10),
+                click: () => new BuyEnergy(),
             }),
+            new EnergyPanel(),
             el("a.button", "Be Supporter", {
                 click: () => { },
             }),

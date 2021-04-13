@@ -1,1 +1,1 @@
-{"version":3,"file":"Army.d.ts","sourceRoot":"","sources":["../../src/game/Army.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAM,MAAM,gBAAgB,CAAC;AAC7C,OAAO,QAAsB,MAAM,YAAY,CAAC;AAEhD,MAAM,CAAC,OAAO,OAAO,IAAK,SAAQ,OAAO;gBAEzB,QAAQ,EAAE,QAAQ;CAmBjC"}
+{"version":3,"file":"Army.d.ts","sourceRoot":"","sources":["../../src/game/Army.ts"],"names":[],"mappings":"AAAA,OAAO,EAA2B,OAAO,EAAgB,MAAM,gBAAgB,CAAC;AAChF,OAAO,QAAsB,MAAM,YAAY,CAAC;AAShD,MAAM,CAAC,OAAO,OAAO,IAAK,SAAQ,OAAO;gBAEzB,QAAQ,EAAE,QAAQ;CA4BjC"}

@@ -287,6 +287,26 @@ h1 {
   color: #ffffff;
   text-shadow: -2px 0 #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
 }
+.army .army-menu {
+  position: absolute;
+  z-index: 999;
+  background: #8f7a66;
+  padding: 10px;
+  border-radius: 4px;
+}
+.army .army-menu:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-color: #8f7a66 transparent;
+  border-width: 8px 6px 0;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -6px;
+}
 .buy-energy {
   width: 500px;
 }

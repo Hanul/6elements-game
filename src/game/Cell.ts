@@ -5,11 +5,15 @@ import { ArmyKind } from "./ArmyData";
 
 export default class Cell extends DomNode {
 
+    private army: Army | undefined;
+
     constructor(private x: number, private y: number) {
         super("a.cell");
 
         this.on("click", async () => {
-            await DefantasyContract.createArmy(x, y, ArmyKind.Fire, 1);
+            if (this.army === undefined) {
+                await DefantasyContract.createArmy(x, y, ArmyKind.Fire, 1);
+            }
         });
 
         this.loadArmy();
@@ -18,7 +22,7 @@ export default class Cell extends DomNode {
     private async loadArmy() {
         const armyData = await DefantasyContract.getArmy(this.x, this.y);
         if (armyData !== undefined) {
-            new Army(armyData).appendTo(this);
+            this.army = new Army(armyData).appendTo(this);
         }
     }
 }

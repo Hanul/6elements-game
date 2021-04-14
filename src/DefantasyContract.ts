@@ -21,6 +21,9 @@ class DefantasyContract extends EventContainer {
         this.contract.on("BuyEnergy", (player, quantity) => {
             this.fireEvent("BuyEnergy", player, quantity);
         });
+        this.contract.on("UseEnergy", (player, quantity) => {
+            this.fireEvent("UseEnergy", player, quantity);
+        });
         this.contract.on("JoinGame", (player, x, y, kind, unitCount) => {
             this.fireEvent("JoinGame", player, x, y, kind, unitCount);
         });
@@ -81,6 +84,23 @@ class DefantasyContract extends EventContainer {
         unitCount: number,
     ): Promise<void> {
         await this.contract.createArmy(x, y, kind, unitCount);
+    }
+
+    public async appendUnits(
+        x: number,
+        y: number,
+        unitCount: number,
+    ): Promise<void> {
+        await this.contract.appendUnits(x, y, unitCount);
+    }
+
+    public async attack(
+        fromX: number,
+        fromY: number,
+        toX: number,
+        toY: number,
+    ): Promise<void> {
+        await this.contract.attack(fromX, fromY, toX, toY);
     }
 }
 

@@ -6,10 +6,11 @@ export default class EnergyPanel extends DomNode {
     constructor() {
         super(".energy-panel");
         this.loadEnergy();
-        DefantasyContract.on("BuyEnergy", this.buyEnergyHandler);
+        DefantasyContract.on("BuyEnergy", this.reloadEnergyHandler);
+        DefantasyContract.on("UseEnergy", this.reloadEnergyHandler);
     }
 
-    private buyEnergyHandler = async (player: string) => {
+    private reloadEnergyHandler = async (player: string) => {
         if (await DefantasyContract.getPlayerAddress() === player) {
             this.loadEnergy();
         }
@@ -21,7 +22,8 @@ export default class EnergyPanel extends DomNode {
     }
 
     public delete() {
-        DefantasyContract.off("BuyEnergy", this.buyEnergyHandler);
+        DefantasyContract.off("BuyEnergy", this.reloadEnergyHandler);
+        DefantasyContract.off("UseEnergy", this.reloadEnergyHandler);
         super.delete();
     }
 }

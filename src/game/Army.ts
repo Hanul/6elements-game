@@ -1,13 +1,43 @@
-import { ClosableFloatingDomNode, DomNode, el, Position } from "@hanul/skynode";
+import { ClosableFloatingDomNode, DomNode, el } from "@hanul/skynode";
+import DefantasyContract from "../DefantasyContract";
+import AppendUnits from "../ui/AppendUnits";
 import ArmyColors from "./ArmyColors";
 import ArmyData, { ArmyKind } from "./ArmyData";
 import GameBoard from "./GameBoard";
 
 class ArmyMenu extends ClosableFloatingDomNode {
-    constructor() {
+    constructor(army: Army, x: number, y: number) {
         super({ left: -999999, top: 999999 }, ".army-menu");
-        this.append(el(".menu", "Append"));
-        this.append(el(".menu", "Attack"));
+        this.append(el("a.menu", "Append", {
+            click: () => {
+                new AppendUnits(x, y);
+                this.delete();
+            },
+        }));
+        this.append(el("a.menu", "Attack", {
+            click: () => {
+                army.showAttackArrows();
+                this.delete();
+            },
+        }));
+    }
+}
+
+class Arrow extends DomNode {
+
+    constructor(private army: Army, direction: string, private toX: number, private toY: number) {
+        super(`a.arrow.${direction}`);
+        this.append(el("img", { src: "/images/arrow.png" }));
+        this.on("mousedown", (event: MouseEvent) => event.stopPropagation());
+        this.on("click", (event: MouseEvent) => {
+            this.attack();
+            event.stopPropagation();
+        });
+    }
+
+    private async attack() {
+        await DefantasyContract.attack(this.army.x, this.army.y, this.toX, this.toY);
+        this.army.hideAttackArrows();
     }
 }
 
@@ -15,7 +45,14 @@ export default class Army extends DomNode {
 
     private static addressToColors: { [address: string]: string } = {};
 
-    constructor(gameBoard: GameBoard, armyData: ArmyData) {
+    private arrowContainer: DomNode | undefined;
+
+    constructor(
+        gameBoard: GameBoard,
+        public x: number,
+        public y: number,
+        armyData: ArmyData,
+    ) {
         super(".army");
 
         if (Army.addressToColors[armyData.owner] === undefined) {
@@ -47,12 +84,35 @@ export default class Army extends DomNode {
         this.append(el("span.unit-count", String(armyData.unitCount)));
 
         this.on("click", async () => {
-            const menu = new ArmyMenu().appendTo(this);
-            const rect = this.rect;
-            menu.style({
-                left: rect.left + window.scrollX + (rect.width - menu.rect.width) / 2,
-                top: rect.top + window.scrollY - menu.rect.height - 10,
-            });
+            if (armyData.owner === await DefantasyContract.getPlayerAddress()) {
+                const menu = new ArmyMenu(this, x, y).appendTo(gameBoard);
+                const rect = this.rect;
+                menu.style({
+                    left: rect.left + window.scrollX + (rect.width - menu.rect.width) / 2,
+                    top: rect.top + window.scrollY - menu.rect.height - 10,
+                });
+            }
         });
+    }
+
+    private windowMousedownHandler = () => {
+        this.hideAttackArrows();
+    };
+
+    public hideAttackArrows() {
+        this.arrowContainer?.delete();
+        this.arrowContainer = undefined;
+        window.removeEventListener("mousedown", this.windowMousedownHandler);
+    }
+
+    public showAttackArrows() {
+        this.hideAttackArrows();
+        this.arrowContainer = el(".arrow-container",
+            new Arrow(this, "up", this.x, this.y - 1),
+            new Arrow(this, "right", this.x + 1, this.y),
+            new Arrow(this, "down", this.x, this.y + 1),
+            new Arrow(this, "left", this.x - 1, this.y),
+        ).appendTo(this);
+        window.addEventListener("mousedown", this.windowMousedownHandler);
     }
 }

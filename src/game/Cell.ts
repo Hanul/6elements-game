@@ -1,4 +1,4 @@
-import { BodyNode, ClosableFloatingDomNode, DomNode, el } from "@hanul/skynode";
+import { ClosableFloatingDomNode, DomNode, el } from "@hanul/skynode";
 import DefantasyContract from "../DefantasyContract";
 import CreateArmy from "../ui/CreateArmy";
 import Army from "./Army";
@@ -39,8 +39,10 @@ export default class Cell extends DomNode {
 
     public async loadArmy() {
         const armyData = await DefantasyContract.getArmy(this.x, this.y);
+        this.army?.delete();
+        this.army = undefined;
         if (armyData !== undefined) {
-            this.army = new Army(this.gameBoard, armyData).appendTo(this);
+            this.army = new Army(this.gameBoard, this.x, this.y, armyData).appendTo(this);
         }
     }
 }

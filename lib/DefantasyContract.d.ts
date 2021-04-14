@@ -19,6 +19,8 @@ declare class DefantasyContract extends EventContainer {
     getArmy(x: number, y: number): Promise<ArmyData | undefined>;
     buyEnergy(energy: number): Promise<void>;
     createArmy(x: number, y: number, kind: ArmyKind, unitCount: number): Promise<void>;
+    appendUnits(x: number, y: number, unitCount: number): Promise<void>;
+    attack(fromX: number, fromY: number, toX: number, toY: number): Promise<void>;
 }
 declare const _default: DefantasyContract;
 export default _default;

@@ -1,7 +1,9 @@
+import { BigNumber } from "@ethersproject/bignumber";
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import DefantasyContract from "../DefantasyContract";
 import GameBoard from "../game/GameBoard";
 import BuyEnergy from "../ui/BuyEnergy";
+import EndGame from "../ui/EndGame";
 import EnergyPanel from "../ui/EnergyPanel";
 import SeasonPanel from "../ui/SeasonPanel";
 
@@ -29,9 +31,13 @@ export default class Game extends DomNode {
                 }),
                 new EnergyPanel(),
                 el("a.button", "Be Supporter", {
-                    click: () => { },
+                    click: () => alert("In dev"),
                 }),
             ),
         );
+
+        DefantasyContract.on("EndGame", (season: BigNumber, winner: string) => {
+            new EndGame(season, winner);
+        });
     }
 }

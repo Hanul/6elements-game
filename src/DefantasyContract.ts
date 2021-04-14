@@ -50,6 +50,7 @@ class DefantasyContract extends EventContainer {
     public async getMapWidth(): Promise<number> { return await this.contract.mapWidth(); }
     public async getMapHeight(): Promise<number> { return await this.contract.mapHeight(); }
     public async getSeason(): Promise<number> { return await this.contract.season(); }
+    public async getUnitEnergy(): Promise<BigNumber> { return this.ENERGY_PRICE.add(await this.contract.season()); }
     public async getPlayerAddress(): Promise<string> { return await this.signer.getAddress(); }
 
     public async getReward(season: number): Promise<BigNumber> {

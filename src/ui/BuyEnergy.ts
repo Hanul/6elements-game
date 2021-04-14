@@ -21,6 +21,7 @@ export default class BuyEnergy extends Popup {
                     },
                 },
             ),
+            el("a.cancel", "Cancel", { click: () => this.delete() }),
             el(".energy-price", `Energy Price: ${ethers.utils.formatEther(DefantasyContract.ENERGY_PRICE)} BNB`),
         ));
     }

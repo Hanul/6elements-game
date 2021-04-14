@@ -9,7 +9,7 @@ import PleaseInstallProvider from "./view/PleaseInstallProvider";
         new PleaseInstallProvider();
     } else {
         const network = await Ethereum.getNetwork();
-        if (network.chainId !== 56 && network.chainId !== 97) {
+        if (/*network.chainId !== 56 && */network.chainId !== 97) {
             new PleaseChangeNetwork();
         } else if (await Ethereum.connected() !== true) {
             new PleaseConnect();

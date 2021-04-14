@@ -7,6 +7,11 @@ export default class GameBoard extends DomNode {
         [position: string]: Cell;
     };
     constructor();
+    private joinGameHandler;
+    private createArmyHandler;
+    private appendUnitsHandler;
+    private attackHandler;
     private loadBoard;
+    delete(): void;
 }
 //# sourceMappingURL=GameBoard.d.ts.map

@@ -12,6 +12,7 @@ declare class DefantasyContract extends EventContainer {
     getMapWidth(): Promise<number>;
     getMapHeight(): Promise<number>;
     getSeason(): Promise<number>;
+    getUnitEnergy(): Promise<BigNumber>;
     getPlayerAddress(): Promise<string>;
     getReward(season: number): Promise<BigNumber>;
     getEnergy(address: string): Promise<BigNumber>;

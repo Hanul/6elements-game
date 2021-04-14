@@ -246,7 +246,7 @@ body {
 .gameboard .cell {
   background: rgba(238, 228, 218, 0.35);
 }
-.gameboard .cell .cell-menu {
+.gameboard .cell-menu {
   position: absolute;
   z-index: 999;
   background: #8f7a66;
@@ -255,7 +255,7 @@ body {
   display: flex;
   gap: 6px;
 }
-.gameboard .cell .cell-menu:after {
+.gameboard .cell-menu:after {
   content: '';
   position: absolute;
   display: block;
@@ -268,7 +268,7 @@ body {
   left: 50%;
   margin-left: -6px;
 }
-.gameboard .cell .cell-menu .menu {
+.gameboard .cell-menu .menu {
   width: 50px;
   height: 50px;
   border-radius: 3px;
@@ -346,5 +346,11 @@ body {
 }
 .buy-energy {
   width: 500px;
+}
+.create-army {
+  width: 500px;
+}
+.create-army .army-kind-button.on {
+  outline: 2px solid red;
 }
 

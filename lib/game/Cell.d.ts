@@ -7,6 +7,6 @@ export default class Cell extends DomNode {
     private y;
     army: Army | undefined;
     constructor(gameBoard: GameBoard, x: number, y: number);
-    private loadArmy;
+    loadArmy(): Promise<void>;
 }
 //# sourceMappingURL=Cell.d.ts.map

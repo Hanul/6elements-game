@@ -1,17 +1,34 @@
 import { ClosableFloatingDomNode, DomNode, el, Position } from "@hanul/skynode";
+import ArmyColors from "./ArmyColors";
 import ArmyData, { ArmyKind } from "./ArmyData";
+import GameBoard from "./GameBoard";
 
 class ArmyMenu extends ClosableFloatingDomNode {
     constructor() {
         super({ left: -999999, top: 999999 }, ".army-menu");
-        this.appendText("Army Menu");
+        this.append(el(".menu", "Append"));
+        this.append(el(".menu", "Attack"));
     }
 }
 
 export default class Army extends DomNode {
 
-    constructor(armyData: ArmyData) {
+    private static addressToColors: { [address: string]: string } = {};
+
+    constructor(gameBoard: GameBoard, armyData: ArmyData) {
         super(".army");
+
+        if (Army.addressToColors[armyData.owner] === undefined) {
+            const existsColors = Object.values(Army.addressToColors);
+            for (const color of ArmyColors) {
+                if (existsColors.includes(color) !== true) {
+                    Army.addressToColors[armyData.owner] = color;
+                    break;
+                }
+            }
+        }
+
+        this.style({ backgroundColor: Army.addressToColors[armyData.owner] });
 
         if (armyData.kind === ArmyKind.Light) {
             this.style({ backgroundImage: "url(/images/units/light.png)" });

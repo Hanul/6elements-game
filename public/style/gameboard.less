@@ -4,6 +4,37 @@
 
     .cell {
         background: rgba(238, 228, 218, 0.35);
+
+        .cell-menu {
+            position     : absolute;
+            z-index      : 999;
+            background   : #8f7a66;
+            padding      : 6px;
+            border-radius: 4px;
+            display      : flex;
+            gap          : 6px;
+
+            &:after {
+                content     : '';
+                position    : absolute;
+                display     : block;
+                width       : 0;
+                z-index     : 1;
+                border-style: solid;
+                border-color: #8f7a66 transparent;
+                border-width: 8px 6px 0;
+                bottom      : -8px;
+                left        : 50%;
+                margin-left : -6px;
+            }
+
+            .menu {
+                width        : 50px;
+                height       : 50px;
+                border-radius: 3px;
+                background   : rgba(238, 228, 218, 0.35);
+            }
+        }
     }
 
     @media @pc {

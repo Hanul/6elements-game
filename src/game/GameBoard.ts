@@ -8,8 +8,7 @@ export default class GameBoard extends DomNode {
 
     private mapWidth = 0;
     private mapHeight = 0;
-    private cells: { [position: string]: Cell } = {};
-    private armies: { [position: string]: Army } = {};
+    public cells: { [position: string]: Cell } = {};
 
     constructor() {
         super(".gameboard");
@@ -29,7 +28,7 @@ export default class GameBoard extends DomNode {
 
         SkyUtil.repeat(this.mapHeight, (y) => {
             SkyUtil.repeat(this.mapWidth, (x) => {
-                this.cells[`${x},${y}`] = new Cell(x, y).appendTo(this);
+                this.cells[`${x},${y}`] = new Cell(this, x, y).appendTo(this);
             });
         });
     }

@@ -246,6 +246,34 @@ h1 {
 .gameboard .cell {
   background: rgba(238, 228, 218, 0.35);
 }
+.gameboard .cell .cell-menu {
+  position: absolute;
+  z-index: 999;
+  background: #8f7a66;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  gap: 6px;
+}
+.gameboard .cell .cell-menu:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-color: #8f7a66 transparent;
+  border-width: 8px 6px 0;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -6px;
+}
+.gameboard .cell .cell-menu .menu {
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  background: rgba(238, 228, 218, 0.35);
+}
 @media only screen and (min-width: 960px) {
   .gameboard {
     grid-gap: 6px;
@@ -279,6 +307,7 @@ h1 {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  border-radius: 4px;
 }
 .army .unit-count {
   padding: 4px;
@@ -291,8 +320,10 @@ h1 {
   position: absolute;
   z-index: 999;
   background: #8f7a66;
-  padding: 10px;
+  padding: 6px;
   border-radius: 4px;
+  display: flex;
+  gap: 6px;
 }
 .army .army-menu:after {
   content: '';
@@ -306,6 +337,12 @@ h1 {
   bottom: -8px;
   left: 50%;
   margin-left: -6px;
+}
+.army .army-menu .menu {
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  background: rgba(238, 228, 218, 0.35);
 }
 .buy-energy {
   width: 500px;

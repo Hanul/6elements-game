@@ -1,28 +1,20 @@
-import { BodyNode, el } from "@hanul/skynode";
-import DefantasyContract from "./DefantasyContract";
-import GameBoard from "./game/GameBoard";
-import BuyEnergy from "./ui/BuyEnergy";
-import EnergyPanel from "./ui/EnergyPanel";
-import SeasonPanel from "./ui/SeasonPanel";
+import Ethereum from "./Ethereum";
+import Game from "./view/Game";
+import PleaseChangeNetwork from "./view/PleaseChangeNetwork";
+import PleaseConnect from "./view/PleaseConnect";
+import PleaseInstallProvider from "./view/PleaseInstallProvider";
 
 (async () => {
-    await DefantasyContract.loadConstants();
-
-    el(".game-container",
-        el("h1", "Defantasy"),
-        new SeasonPanel(),
-        el("p.game-description", "This is defantasy game."),
-        el(".game-board-container",
-            new GameBoard(),
-        ),
-        el(".button-container",
-            el("a.button", "Buy Energy", {
-                click: () => new BuyEnergy(),
-            }),
-            new EnergyPanel(),
-            el("a.button", "Be Supporter", {
-                click: () => { },
-            }),
-        ),
-    ).appendTo(BodyNode);
+    if (Ethereum.existsProvider !== true) {
+        new PleaseInstallProvider();
+    } else {
+        const network = await Ethereum.getNetwork();
+        if (network.chainId !== 56 && network.chainId !== 97) {
+            new PleaseChangeNetwork();
+        } else if (await Ethereum.connected() !== true) {
+            new PleaseConnect();
+        } else {
+            new Game();
+        }
+    }
 })();

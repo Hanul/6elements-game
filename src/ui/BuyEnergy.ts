@@ -1,4 +1,5 @@
 import { DomNode, el, Popup } from "@hanul/skynode";
+import { ethers } from "ethers";
 import DefantasyContract from "../DefantasyContract";
 
 export default class BuyEnergy extends Popup {
@@ -20,6 +21,7 @@ export default class BuyEnergy extends Popup {
                     },
                 },
             ),
+            el(".energy-price", `Energy Price: ${ethers.utils.formatEther(DefantasyContract.ENERGY_PRICE)} BNB`),
         ));
     }
 }

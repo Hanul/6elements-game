@@ -14,12 +14,26 @@ export default class SeasonPanel extends DomNode {
             this.rewardDisplay = el(".reward"),
         );
         this.loadSeason();
+        this.loadReward();
+        DefantasyContract.on("BuyEnergy", this.buyEnergyHandler);
     }
+
+    private buyEnergyHandler = async () => {
+        this.loadReward();
+    };
 
     private async loadSeason() {
         const season = await DefantasyContract.getSeason();
-        this.seasonDisplay.appendText(`Season ${season}`);
-        const reward = await DefantasyContract.getReward(season);
-        this.seasonDisplay.appendText(`Reward ${ethers.utils.formatEther(reward)} BNB`);
+        this.seasonDisplay.empty().appendText(`Season ${season}`);
+    }
+
+    private async loadReward() {
+        const reward = await DefantasyContract.getReward(await DefantasyContract.getSeason());
+        this.rewardDisplay.empty().appendText(`Reward ${ethers.utils.formatEther(reward)} BNB`);
+    }
+
+    public delete() {
+        DefantasyContract.off("BuyEnergy", this.buyEnergyHandler);
+        super.delete();
     }
 }

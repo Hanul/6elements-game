@@ -1,27 +1,43 @@
 import { BigNumber, ethers } from "ethers";
+import EventContainer from "eventcontainer";
+import Ethereum from "./Ethereum";
 import ArmyData, { ArmyKind } from "./game/ArmyData";
 
-(window as any).ethereum.request({ method: "eth_requestAccounts" });
-
-class DefantasyContract {
-
-    // Binance Testnet
-    private static readonly ADDRESS = "0x67b21AE3c8d1d1B86C0290b49d854262AC1D9Eeb";
+class DefantasyContract extends EventContainer {
 
     // Binance Network
     //private static readonly ADDRESS = "0x533CF0eB4C5Dbfb189e8030E65032d8270B09CBE";
 
-    private provider = new ethers.providers.Web3Provider((window as any).ethereum)
-    private signer = this.provider.getSigner();
-    private abi = require("./DefantasyContractABI.json");
-    private contract = new ethers.Contract(DefantasyContract.ADDRESS, this.abi, this.provider).connect(this.signer);
+    // Binance Testnet
+    private static readonly ADDRESS = "0xfe6D468bB4DD530E0f5eE98b58e37e11DaAAaF31";
+
+    private static readonly ABI = require("./DefantasyContractABI.json");
+
+    private signer = Ethereum.provider.getSigner();
+    private contract = new ethers.Contract(DefantasyContract.ADDRESS, DefantasyContract.ABI, Ethereum.provider).connect(this.signer);
 
     constructor() {
+        super();
+        this.contract.on("BuyEnergy", (player, quantity) => {
+            this.fireEvent("BuyEnergy", player, quantity);
+        });
         this.contract.on("JoinGame", (player, x, y, kind, unitCount) => {
-            console.log("JoinGame", player, x, y, kind, unitCount);
+            this.fireEvent("JoinGame", player, x, y, kind, unitCount);
         });
         this.contract.on("CreateArmy", (player, x, y, kind, unitCount) => {
-            console.log("CreateArmy", player, x, y, kind, unitCount);
+            this.fireEvent("CreateArmy", player, x, y, kind, unitCount);
+        });
+        this.contract.on("AppendUnits", (player, x, y, unitCount) => {
+            this.fireEvent("AppendUnits", player, x, y, unitCount);
+        });
+        this.contract.on("Attack", (player, fromX, fromY, toX, toY) => {
+            this.fireEvent("Attack", player, fromX, fromY, toX, toY);
+        });
+        this.contract.on("Support", (supporter, to, quantity) => {
+            this.fireEvent("Support", supporter, to, quantity);
+        });
+        this.contract.on("EndSeason", (season, winner) => {
+            this.fireEvent("EndSeason", season, winner);
         });
     }
 

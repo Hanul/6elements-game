@@ -1,1 +1,1 @@
-{"version":3,"file":"EnergyPanel.d.ts","sourceRoot":"","sources":["../../src/ui/EnergyPanel.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,gBAAgB,CAAC;AAGzC,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,OAAO;;YAO9B,UAAU;CAI3B"}
+{"version":3,"file":"EnergyPanel.d.ts","sourceRoot":"","sources":["../../src/ui/EnergyPanel.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,gBAAgB,CAAC;AAGzC,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,OAAO;;IAQ5C,OAAO,CAAC,gBAAgB,CAItB;YAEY,UAAU;IAKjB,MAAM;CAIhB"}

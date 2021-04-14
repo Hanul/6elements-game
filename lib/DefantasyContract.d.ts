@@ -1,10 +1,10 @@
 import { BigNumber } from "ethers";
+import EventContainer from "eventcontainer";
 import ArmyData, { ArmyKind } from "./game/ArmyData";
-declare class DefantasyContract {
+declare class DefantasyContract extends EventContainer {
     private static readonly ADDRESS;
-    private provider;
+    private static readonly ABI;
     private signer;
-    private abi;
     private contract;
     constructor();
     ENERGY_PRICE: BigNumber;

@@ -187,41 +187,6 @@ input {
 body {
   background: #faf8ef;
 }
-.game-container {
-  width: 534px;
-}
-h1 {
-  font-family: "font1";
-  font-size: 80px;
-  color: #776e65;
-}
-.game-description {
-  font-size: 18px;
-  color: #776e65;
-}
-.game-board-container {
-  text-align: center;
-  padding: 20px 0;
-}
-.button-container:after {
-  content: " ";
-  display: block;
-  font-size: 0;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-.button-container .button {
-  float: left;
-  background: #8f7a66;
-  color: #f9f6f2;
-  line-height: 42px;
-  padding: 0 20px;
-  border-radius: 3px;
-}
-.button-container .button:last-of-type {
-  float: right;
-}
 .popup {
   position: fixed;
   left: 0;
@@ -238,6 +203,41 @@ h1 {
   border-radius: 20px;
   padding: 20px;
   margin: auto;
+}
+.game {
+  width: 534px;
+}
+.game h1 {
+  font-family: "font1";
+  font-size: 80px;
+  color: #776e65;
+}
+.game .game-description {
+  font-size: 18px;
+  color: #776e65;
+}
+.game .game-board-container {
+  text-align: center;
+  padding: 20px 0;
+}
+.game .button-container:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.game .button-container .button {
+  float: left;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.game .button-container .button:last-of-type {
+  float: right;
 }
 .gameboard {
   display: inline-grid;

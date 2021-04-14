@@ -1,0 +1,36 @@
+.game {
+    width: 534px;
+
+    h1 {
+        font-family: "font1";
+        font-size  : 80px;
+        color      : #776e65;
+    }
+
+    .game-description {
+        font-size: 18px;
+        color    : #776e65;
+    }
+
+    .game-board-container {
+        text-align: center;
+        padding   : 20px 0;
+    }
+
+    .button-container {
+        .float-wrapper();
+
+        .button {
+            float        : left;
+            background   : #8f7a66;
+            color        : #f9f6f2;
+            line-height  : 42px;
+            padding      : 0 20px;
+            border-radius: 3px;
+
+            &:last-of-type {
+                float: right;
+            }
+        }
+    }
+}

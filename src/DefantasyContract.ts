@@ -13,11 +13,18 @@ class DefantasyContract extends EventContainer {
 
     private static readonly ABI = require("./DefantasyContractABI.json");
 
-    private signer = Ethereum.provider.getSigner();
-    private contract = new ethers.Contract(DefantasyContract.ADDRESS, DefantasyContract.ABI, Ethereum.provider).connect(this.signer);
+    private signer!: ethers.providers.JsonRpcSigner;
+    private web3Signer!: ethers.providers.JsonRpcSigner;
+    private contract!: ethers.Contract;
+    private web3Contract!: ethers.Contract;
 
-    constructor() {
-        super();
+    public async init() {
+        this.signer = Ethereum.provider.getSigner(Ethereum.playerAddress);
+        this.web3Signer = Ethereum.web3Provider.getSigner();
+
+        this.contract = new ethers.Contract(DefantasyContract.ADDRESS, DefantasyContract.ABI, Ethereum.provider).connect(this.signer);
+        this.web3Contract = new ethers.Contract(DefantasyContract.ADDRESS, DefantasyContract.ABI, Ethereum.web3Provider).connect(this.web3Signer);
+
         this.contract.on("BuyEnergy", (player, quantity) => {
             this.fireEvent("BuyEnergy", player, quantity);
         });
@@ -74,7 +81,7 @@ class DefantasyContract extends EventContainer {
     }
 
     public async buyEnergy(energy: number): Promise<void> {
-        await this.contract.buyEnergy({ value: this.ENERGY_PRICE.mul(energy) });
+        await this.web3Contract.buyEnergy({ value: this.ENERGY_PRICE.mul(energy) });
     }
 
     public async createArmy(
@@ -83,7 +90,7 @@ class DefantasyContract extends EventContainer {
         kind: ArmyKind,
         unitCount: number,
     ): Promise<void> {
-        await this.contract.createArmy(x, y, kind, unitCount);
+        await this.web3Contract.createArmy(x, y, kind, unitCount);
     }
 
     public async appendUnits(
@@ -91,7 +98,7 @@ class DefantasyContract extends EventContainer {
         y: number,
         unitCount: number,
     ): Promise<void> {
-        await this.contract.appendUnits(x, y, unitCount);
+        await this.web3Contract.appendUnits(x, y, unitCount);
     }
 
     public async attack(
@@ -100,7 +107,7 @@ class DefantasyContract extends EventContainer {
         toX: number,
         toY: number,
     ): Promise<void> {
-        await this.contract.attack(fromX, fromY, toX, toY);
+        await this.web3Contract.attack(fromX, fromY, toX, toY);
     }
 }
 

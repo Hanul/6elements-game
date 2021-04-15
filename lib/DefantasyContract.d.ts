@@ -5,8 +5,10 @@ declare class DefantasyContract extends EventContainer {
     private static readonly ADDRESS;
     private static readonly ABI;
     private signer;
+    private web3Signer;
     private contract;
-    constructor();
+    private web3Contract;
+    init(): Promise<void>;
     ENERGY_PRICE: BigNumber;
     loadConstants(): Promise<void>;
     getMapWidth(): Promise<number>;

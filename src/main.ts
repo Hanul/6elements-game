@@ -5,7 +5,7 @@ import PleaseConnect from "./view/PleaseConnect";
 import PleaseInstallProvider from "./view/PleaseInstallProvider";
 
 (async () => {
-    if (Ethereum.existsProvider !== true) {
+    if (Ethereum.existsWeb3Provider !== true) {
         new PleaseInstallProvider();
     } else {
         const network = await Ethereum.getNetwork();

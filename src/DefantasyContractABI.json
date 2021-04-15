@@ -216,6 +216,25 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "player",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "UseEnergy",
+		"type": "event"
+	},
+	{
 		"inputs": [],
 		"name": "BASE_MAP_H",
 		"outputs": [

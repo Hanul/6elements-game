@@ -9,7 +9,7 @@ class DefantasyContract extends EventContainer {
     //private static readonly ADDRESS = "0x533CF0eB4C5Dbfb189e8030E65032d8270B09CBE";
 
     // Binance Testnet
-    private static readonly ADDRESS = "0xfe6D468bB4DD530E0f5eE98b58e37e11DaAAaF31";
+    private static readonly ADDRESS = "0x040fC1243439ab8927cc58c23D95b6F0b46D5974";
 
     private static readonly ABI = require("./DefantasyContractABI.json");
 

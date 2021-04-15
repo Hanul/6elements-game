@@ -177,12 +177,8 @@ input {
   visibility: hidden;
 }
 @font-face {
-  font-family: "font1";
-  src: url("font1.ttf");
-}
-@font-face {
-  font-family: "font2";
-  src: url("font2.ttf");
+  font-family: "Logo Font";
+  src: url("logo-font.ttf");
 }
 body {
   background: #faf8ef;
@@ -208,7 +204,7 @@ body {
   width: 534px;
 }
 .game h1 {
-  font-family: "font1";
+  font-family: "Logo Font";
   font-size: 80px;
   color: #776e65;
 }

@@ -52,15 +52,17 @@ class DefantasyContract extends EventContainer {
     }
 
     public ENERGY_PRICE!: BigNumber;
+    public BASE_SUMMON_ENERGY!: number;
 
     public async loadConstants() {
         this.ENERGY_PRICE = await this.contract.ENERGY_PRICE();
+        this.BASE_SUMMON_ENERGY = await this.contract.BASE_SUMMON_ENERGY();
     }
 
     public async getMapWidth(): Promise<number> { return await this.contract.mapWidth(); }
     public async getMapHeight(): Promise<number> { return await this.contract.mapHeight(); }
     public async getSeason(): Promise<number> { return await this.contract.season(); }
-    public async getUnitEnergy(): Promise<BigNumber> { return this.ENERGY_PRICE.add(await this.contract.season()); }
+    public async getUnitEnergy(): Promise<BigNumber> { return this.BASE_SUMMON_ENERGY + await this.contract.season(); }
     public async getPlayerAddress(): Promise<string> { return await this.signer.getAddress(); }
 
     public async getReward(season: number): Promise<BigNumber> {
@@ -90,7 +92,10 @@ class DefantasyContract extends EventContainer {
         kind: ArmyKind,
         unitCount: number,
     ): Promise<void> {
-        await this.web3Contract.createArmy(x, y, kind, unitCount);
+        const energyNeed = (await this.getUnitEnergy()).mul(unitCount);
+        const playerEnergy = await this.getEnergy(await this.getPlayerAddress());
+        const energy = energyNeed.gt(playerEnergy) ? energyNeed.sub(playerEnergy) : 0;
+        await this.web3Contract.createArmy(x, y, kind, unitCount, { value: this.ENERGY_PRICE.mul(energy) });
     }
 
     public async appendUnits(
@@ -98,7 +103,10 @@ class DefantasyContract extends EventContainer {
         y: number,
         unitCount: number,
     ): Promise<void> {
-        await this.web3Contract.appendUnits(x, y, unitCount);
+        const energyNeed = (await this.getUnitEnergy()).mul(unitCount);
+        const playerEnergy = await this.getEnergy(await this.getPlayerAddress());
+        const energy = energyNeed.gt(playerEnergy) ? energyNeed.sub(playerEnergy) : 0;
+        await this.web3Contract.appendUnits(x, y, unitCount, { value: this.ENERGY_PRICE.mul(energy) });
     }
 
     public async attack(

@@ -10,6 +10,7 @@ declare class DefantasyContract extends EventContainer {
     private web3Contract;
     init(): Promise<void>;
     ENERGY_PRICE: BigNumber;
+    BASE_SUMMON_ENERGY: number;
     loadConstants(): Promise<void>;
     getMapWidth(): Promise<number>;
     getMapHeight(): Promise<number>;

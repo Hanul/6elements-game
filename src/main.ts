@@ -8,8 +8,8 @@ import PleaseInstallProvider from "./view/PleaseInstallProvider";
     if (Ethereum.existsWeb3Provider !== true) {
         new PleaseInstallProvider();
     } else {
-        const network = await Ethereum.getNetwork();
-        if (/*network.chainId !== 56 && */network.chainId !== 97) {
+        const web3Network = await Ethereum.getWeb3Network();
+        if (/*network.chainId !== 56 && */web3Network.chainId !== 97) {
             new PleaseChangeNetwork();
         } else if (await Ethereum.connected() !== true) {
             new PleaseConnect();

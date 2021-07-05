@@ -1,11 +1,11 @@
 {
-  "name": "defantasy",
+  "name": "6elements",
   "version": "0.0.1",
   "dependencies": {
-    "@hanul/skynode": "^0.0.1",
+    "@hanul/skynode": "^0.0.9",
     "ethers": "^5.0.32",
     "less": "^4.1.1",
-    "skyutil": "^0.0.1"
+    "skyutil": "^0.0.8"
   },
   "scripts": {
     "webpack-dev": "webpack --mode development --watch --config webpack.config.dev.js",

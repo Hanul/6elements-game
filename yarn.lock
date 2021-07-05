@@ -364,19 +364,19 @@
     "@ethersproject/properties" "^5.0.7"
     "@ethersproject/strings" "^5.0.8"
 
-"@hanul/el.js@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@hanul/el.js/-/el.js-0.0.7.tgz#748ee8d24fac34e4a58522822d1df93cbbce6bee"
-  integrity sha512-Vc9f4P+sytFf7MntfqrkyxikUZHwfK4lBDXMsoYp9pKbzw7sQ3pI4ppL+xoUwjJLOBiJpNIv+MkfPc+7HZrn6A==
-
-"@hanul/skynode@^0.0.1":
+"@hanul/debouncer@^0.0.1":
   version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@hanul/skynode/-/skynode-0.0.1.tgz#19f0ec239ee30c4fdb8f203f71bd4a3323bc4dd8"
-  integrity sha512-VUnxkriwIcQVNqenRPnKwXWUAnovv299BEDTrO5D20Dhxy1rVee5Y4DjrZRZTBDQNAC/+ZmRENSMyGLNU8QzYA==
+  resolved "https://registry.yarnpkg.com/@hanul/debouncer/-/debouncer-0.0.1.tgz#0c7b0242e6c54c02ea74a2939c529de6845c1235"
+  integrity sha512-i5oU9vqA4bWHfleEGnykDH92q4Dtu1qmY1enn3cFlojEiSQFf7l1wrYjaYlN2kqkXRpXn4a/iEjWWPDtl5gJJg==
+
+"@hanul/skynode@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@hanul/skynode/-/skynode-0.0.9.tgz#786d3ef0c72dafbb1dd42be5a4e9b143cd0ba05a"
+  integrity sha512-fHAta5HHzQ3R2POhtxa05om5JlfRALn0i0S44cxbFpyjlL+oSIsb0TH9eUXvzcowrQpY+vxd+59nHm6RGy+DVQ==
   dependencies:
-    "@hanul/el.js" "^0.0.7"
-    eventcontainer "^0.0.2"
-    skyutil "^0.0.1"
+    "@hanul/debouncer" "^0.0.1"
+    eventcontainer "^0.0.4"
+    skyutil "^0.0.7"
 
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
@@ -957,10 +957,12 @@ ethers@^5.0.32:
     "@ethersproject/web" "5.0.14"
     "@ethersproject/wordlists" "5.0.10"
 
-eventcontainer@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/eventcontainer/-/eventcontainer-0.0.2.tgz#603bcc333ba9be0e8477ffa18a1c17b273e00c4c"
-  integrity sha512-0BY6T0iIVvoSE/9kVTIp0T8EKCa0+hJ+VS0AvtQU1OCkxS5H8m3jV2UI1cf/az3m9+ny+DipiDKIkAe4l19D9Q==
+eventcontainer@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/eventcontainer/-/eventcontainer-0.0.4.tgz#9b5fe22a51411e1cda7ed0872b11973b7d063b23"
+  integrity sha512-t4PRl3OBPvgebEx6of7rxzDwSt2HG4nwy3vfEHCkbmQOHqGgmrx2U3TsmMZAzjSnF03Ileja9BS5aiP5t0keLA==
+  dependencies:
+    skyutil "^0.0.1"
 
 events@^3.2.0:
   version "3.3.0"
@@ -1696,6 +1698,16 @@ skyutil@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/skyutil/-/skyutil-0.0.1.tgz#fdd8255b2eeac3ee06e3643427e34db0ee42ab8b"
   integrity sha512-rcbUtbwiuOJs9rvZHzVUgV1UBhOa7KxnPEmQapfhzSwUAFM2THLNZuoF/8XMFEuznRqPMeYeABo8TFiFrgBL+w==
+
+skyutil@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/skyutil/-/skyutil-0.0.7.tgz#db408d6d8d02623e83ddd57598822812b51c93db"
+  integrity sha512-5ZWmnrP2+UguDpfjjr01g2pPxs7Wm8olCFfURTCc6TubTvn3tX5GA3KRA8u2DCPxUsFgtXfaMgsKEMhZ6KRHRA==
+
+skyutil@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/skyutil/-/skyutil-0.0.8.tgz#4b66beddabbf45820d30788cbae4eb02a2948dc7"
+  integrity sha512-Otgd9Wrc4OAdbRE9+crgR8OXFH7WvBWr8mvAwyYGURLPXJShx9T/75kpl1NPK8AHkQBIkWat8pMYZBIP4tRmLg==
 
 source-list-map@^2.0.0, source-list-map@^2.0.1:
   version "2.0.1"

@@ -1,4 +1,4 @@
-# defantasy-game
+# 6elements-game
 
 ## TODO
 - 엔터로 바로 되도록

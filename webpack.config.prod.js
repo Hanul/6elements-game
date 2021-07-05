@@ -17,7 +17,7 @@ module.exports = {
     },
     entry: {
         'bundle': './src/main.ts',
-        __less: './public/style/main.less',
+        __less: './docs/style/main.less',
     },
     module: {
         rules: [
@@ -50,7 +50,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'docs'),
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -1,6 +1,6 @@
 import { DomNode, el } from "@hanul/skynode";
 import { ethers } from "ethers";
-import DefantasyContract from "../DefantasyContract";
+import SixElementsContract from "../contracts/SixElementsContract";
 
 export default class SeasonPanel extends DomNode {
 
@@ -15,7 +15,7 @@ export default class SeasonPanel extends DomNode {
         );
         this.loadSeason();
         this.loadReward();
-        DefantasyContract.on("BuyEnergy", this.buyEnergyHandler);
+        SixElementsContract.on("BuyEnergy", this.buyEnergyHandler);
     }
 
     private buyEnergyHandler = async () => {
@@ -23,17 +23,18 @@ export default class SeasonPanel extends DomNode {
     };
 
     private async loadSeason() {
-        const season = await DefantasyContract.getSeason();
+        const season = await SixElementsContract.getSeason();
         this.seasonDisplay.empty().appendText(`Season ${season}`);
     }
 
     private async loadReward() {
-        const reward = await DefantasyContract.getReward(await DefantasyContract.getSeason());
-        this.rewardDisplay.empty().appendText(`Reward ${ethers.utils.formatEther(reward)} BNB`);
+        const season = await SixElementsContract.getSeason();
+        const reward = await SixElementsContract.getReward(season.toNumber());
+        this.rewardDisplay.empty().appendText(`Reward ${ethers.utils.formatEther(reward)} MATIC`);
     }
 
     public delete() {
-        DefantasyContract.off("BuyEnergy", this.buyEnergyHandler);
+        SixElementsContract.off("BuyEnergy", this.buyEnergyHandler);
         super.delete();
     }
 }

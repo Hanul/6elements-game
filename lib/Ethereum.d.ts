@@ -1,12 +1,15 @@
 import { ethers } from "ethers";
 declare class Ethereum {
-    provider: ethers.providers.JsonRpcProvider;
+    provider: ethers.providers.WebSocketProvider;
     private ethereum;
     get existsWeb3Provider(): boolean;
     web3Provider: ethers.providers.Web3Provider;
-    playerAddress: string;
+    accountAddress: string;
+    signer: ethers.providers.JsonRpcSigner;
+    web3Signer: ethers.providers.JsonRpcSigner;
     constructor();
     getNetwork(): Promise<ethers.providers.Network>;
+    getWeb3Network(): Promise<ethers.providers.Network>;
     connected(): Promise<boolean>;
     connect(): Promise<void>;
 }

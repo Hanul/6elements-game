@@ -1,43 +1,24 @@
-import { BigNumber } from "@ethersproject/bignumber";
 import { BodyNode, DomNode, el } from "@hanul/skynode";
-import DefantasyContract from "../DefantasyContract";
+import { BigNumber } from "ethers";
+import SixElementsContract from "../contracts/SixElementsContract";
 import GameBoard from "../game/GameBoard";
-import BuyEnergy from "../ui/BuyEnergy";
-import EndGame from "../ui/EndGame";
 import EnergyPanel from "../ui/EnergyPanel";
 import SeasonPanel from "../ui/SeasonPanel";
 
 export default class Game extends DomNode {
 
     constructor() {
-        super(".game");
-        this.appendTo(BodyNode);
-        this.init();
-    }
-
-    private async init() {
-        await DefantasyContract.loadConstants();
-
+        super("#game");
         this.append(
-            el("h1", "Defantasy"),
+            el("h1", "6 Elements"),
             new SeasonPanel(),
-            el("p.game-description", "This is defantasy game."),
-            el(".game-board-container",
-                new GameBoard(),
-            ),
-            el(".button-container",
-                el("a.button", "Buy Energy", {
-                    click: () => new BuyEnergy(),
-                }),
-                new EnergyPanel(),
-                el("a.button", "Be Supporter", {
-                    click: () => alert("In dev"),
-                }),
-            ),
+            new GameBoard(),
+            new EnergyPanel(),
         );
+        this.appendTo(BodyNode);
 
-        DefantasyContract.on("EndGame", (season: BigNumber, winner: string) => {
-            new EndGame(season, winner);
+        SixElementsContract.on("EndGame", (season: BigNumber, winner: string) => {
+            //new EndGame(season, winner);
         });
     }
 }

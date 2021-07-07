@@ -1,36 +1,46 @@
-.game {
-    width: 534px;
+#game {
+    padding-top: 20px;
 
-    h1 {
+    >h1 {
         font-family: "Logo Font";
-        font-size  : 80px;
+        font-size  : 70px;
         color      : #776e65;
+        text-align : center;
     }
 
-    .game-description {
-        font-size: 18px;
-        color    : #776e65;
-    }
-
-    .game-board-container {
-        text-align: center;
-        padding   : 20px 0;
-    }
-
-    .button-container {
+    >.season-panel {
+        padding    : 20px;
+        font-size  : 18px;
+        line-height: 1.5em;
         .float-wrapper();
 
-        .button {
-            float        : left;
+        >.season {
+            float: left;
+        }
+
+        >.reward {
+            float: right;
+        }
+    }
+
+    >.energy-panel {
+        padding    : 20px;
+        font-size  : 18px;
+        line-height: 1.5em;
+        .float-wrapper();
+
+        >.energy {
+            float      : left;
+            line-height: 42px;
+        }
+
+        >.buy-button {
+            float        : right;
             background   : #8f7a66;
             color        : #f9f6f2;
             line-height  : 42px;
             padding      : 0 20px;
             border-radius: 3px;
-
-            &:last-of-type {
-                float: right;
-            }
         }
     }
 }

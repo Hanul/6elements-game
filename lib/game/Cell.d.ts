@@ -3,8 +3,8 @@ import Army from "./Army";
 import GameBoard from "./GameBoard";
 export default class Cell extends DomNode {
     private gameBoard;
-    private x;
-    private y;
+    x: number;
+    y: number;
     army: Army | undefined;
     constructor(gameBoard: GameBoard, x: number, y: number);
     loadArmy(): Promise<void>;

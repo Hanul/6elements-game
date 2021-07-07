@@ -1,19 +1,23 @@
 import { ClosableFloatingDomNode, DomNode, el } from "@hanul/skynode";
-import DefantasyContract from "../DefantasyContract";
-import AppendUnits from "../ui/AppendUnits";
+import SixElementsContract from "../contracts/SixElementsContract";
+import Wallet from "../ethereum/Wallet";
+import AppendUnitsPopup from "../ui/AppendUnitsPopup";
 import ArmyColors from "./ArmyColors";
 import ArmyData, { ArmyKind } from "./ArmyData";
 import GameBoard from "./GameBoard";
 
 class ArmyMenu extends ClosableFloatingDomNode {
+
     constructor(army: Army, x: number, y: number) {
         super({ left: -999999, top: 999999 }, ".army-menu");
-        this.append(el("a.menu", "Append", {
+
+        this.append(el("a.menu", "Add", {
             click: () => {
-                new AppendUnits(x, y);
+                new AppendUnitsPopup(x, y);
                 this.delete();
             },
         }));
+
         this.append(el("a.menu", "Attack", {
             click: () => {
                 army.showAttackArrows();
@@ -28,15 +32,15 @@ class Arrow extends DomNode {
     constructor(private army: Army, direction: string, private toX: number, private toY: number) {
         super(`a.arrow.${direction}`);
         this.append(el("img", { src: "/images/arrow.png" }));
-        this.on("mousedown", (event: MouseEvent) => event.stopPropagation());
-        this.on("click", (event: MouseEvent) => {
+        this.onDom("mousedown", (event: MouseEvent) => event.stopPropagation());
+        this.onDom("click", (event: MouseEvent) => {
             this.attack();
             event.stopPropagation();
         });
     }
 
     private async attack() {
-        await DefantasyContract.attack(this.army.x, this.army.y, this.toX, this.toY);
+        await SixElementsContract.attack(this.army.x, this.army.y, this.toX, this.toY);
         this.army.hideAttackArrows();
     }
 }
@@ -51,7 +55,7 @@ export default class Army extends DomNode {
         gameBoard: GameBoard,
         public x: number,
         public y: number,
-        armyData: ArmyData,
+        public armyData: ArmyData,
     ) {
         super(".army");
 
@@ -83,8 +87,8 @@ export default class Army extends DomNode {
 
         this.append(el("span.unit-count", String(armyData.unitCount)));
 
-        this.on("click", async () => {
-            if (armyData.owner === await DefantasyContract.getPlayerAddress()) {
+        this.onDom("click", async () => {
+            if (armyData.owner === await Wallet.loadAddress()) {
                 const menu = new ArmyMenu(this, x, y).appendTo(gameBoard);
                 const rect = this.rect;
                 menu.style({

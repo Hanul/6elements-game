@@ -1,6 +1,7 @@
 import { ClosableFloatingDomNode, DomNode, el } from "@hanul/skynode";
-import DefantasyContract from "../DefantasyContract";
-import CreateArmy from "../ui/CreateArmy";
+import SixElementsContract from "../contracts/SixElementsContract";
+import Wallet from "../ethereum/Wallet";
+import CreateArmyPopup from "../ui/CreateArmyPopup";
 import Army from "./Army";
 import GameBoard from "./GameBoard";
 
@@ -9,7 +10,7 @@ class CellMenu extends ClosableFloatingDomNode {
         super({ left: -999999, top: 999999 }, ".cell-menu");
         this.append(el("a.menu", "Create", {
             click: () => {
-                new CreateArmy(x, y);
+                new CreateArmyPopup(x, y);
                 this.delete();
             },
         }));
@@ -20,11 +21,12 @@ export default class Cell extends DomNode {
 
     public army: Army | undefined;
 
-    constructor(private gameBoard: GameBoard, private x: number, private y: number) {
+    constructor(private gameBoard: GameBoard, public x: number, public y: number) {
         super("a.cell");
 
-        this.on("click", async () => {
-            if (this.army === undefined) {
+        this.onDom("click", async () => {
+            const address = await Wallet.loadAddress();
+            if (this.army === undefined && address !== undefined && gameBoard.checkAllies(address, x, y)) {
                 const menu = new CellMenu(this.x, this.y).appendTo(gameBoard);
                 const rect = this.rect;
                 menu.style({
@@ -38,7 +40,7 @@ export default class Cell extends DomNode {
     }
 
     public async loadArmy() {
-        const armyData = await DefantasyContract.getArmy(this.x, this.y);
+        const armyData = await SixElementsContract.getArmy(this.x, this.y);
         this.army?.delete();
         this.army = undefined;
         if (armyData !== undefined) {

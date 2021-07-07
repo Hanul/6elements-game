@@ -1,15 +1,15 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
-import Ethereum from "../Ethereum";
+import Wallet from "../ethereum/Wallet";
 
 export default class PleaseConnect extends DomNode {
 
     constructor() {
-        super(".please-connect");
+        super("#help");
         this.append(
             el("p", "Please Connect"),
             el("a", "Connect", {
                 click: async () => {
-                    await Ethereum.connect();
+                    await Wallet.connect();
                     location.reload();
                 },
             }),

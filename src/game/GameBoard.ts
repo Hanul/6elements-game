@@ -1,6 +1,6 @@
 import { DomNode } from "@hanul/skynode";
 import SkyUtil from "skyutil";
-import DefantasyContract from "../DefantasyContract";
+import SixElementsContract from "../contracts/SixElementsContract";
 import { ArmyKind } from "./ArmyData";
 import Cell from "./Cell";
 
@@ -10,13 +10,45 @@ export default class GameBoard extends DomNode {
     private mapHeight = 0;
     public cells: { [position: string]: Cell } = {};
 
+    public checkAllies(address: string, x: number, y: number) {
+        let count = 0;
+        for (const cell of Object.values(this.cells)) {
+            if (cell.army?.armyData.owner === address) {
+                count += 1;
+                if (Math.abs(cell.x - x) + Math.abs(cell.y - y) <= 1) {
+                    return true;
+                }
+            }
+        }
+        return count === 0;
+    }
+
     constructor() {
         super(".gameboard");
-        this.loadBoard();
-        DefantasyContract.on("JoinGame", this.joinGameHandler);
-        DefantasyContract.on("CreateArmy", this.createArmyHandler);
-        DefantasyContract.on("AppendUnits", this.appendUnitsHandler);
-        DefantasyContract.on("Attack", this.attackHandler);
+        this.load();
+        SixElementsContract.on("JoinGame", this.joinGameHandler);
+        SixElementsContract.on("CreateArmy", this.createArmyHandler);
+        SixElementsContract.on("AppendUnits", this.appendUnitsHandler);
+        SixElementsContract.on("Attack", this.attackHandler);
+    }
+
+    private async load() {
+
+        this.mapWidth = await SixElementsContract.getMapWidth();
+        this.mapHeight = await SixElementsContract.getMapHeight();
+
+        this.empty();
+        this.style({
+            width: this.mapWidth * 44 + 8,
+            gridTemplateColumns: `repeat(${this.mapHeight}, auto)`,
+            gridTemplateRows: `repeat(${this.mapWidth}, auto)`,
+        });
+
+        SkyUtil.repeat(this.mapHeight, (y) => {
+            SkyUtil.repeat(this.mapWidth, (x) => {
+                this.cells[`${x},${y}`] = new Cell(this, x, y).appendTo(this);
+            });
+        });
     }
 
     private joinGameHandler = async (player: string, x: number, y: number, kind: ArmyKind, unitCount: number) => {
@@ -41,29 +73,11 @@ export default class GameBoard extends DomNode {
         toCell?.loadArmy();
     };
 
-    private async loadBoard() {
-
-        this.mapWidth = await DefantasyContract.getMapWidth();
-        this.mapHeight = await DefantasyContract.getMapHeight();
-
-        this.empty();
-        this.style({
-            gridTemplateColumns: `repeat(${this.mapHeight}, auto)`,
-            gridTemplateRows: `repeat(${this.mapWidth}, auto)`,
-        });
-
-        SkyUtil.repeat(this.mapHeight, (y) => {
-            SkyUtil.repeat(this.mapWidth, (x) => {
-                this.cells[`${x},${y}`] = new Cell(this, x, y).appendTo(this);
-            });
-        });
-    }
-
     public delete() {
-        DefantasyContract.off("JoinGame", this.joinGameHandler);
-        DefantasyContract.off("CreateArmy", this.createArmyHandler);
-        DefantasyContract.off("AppendUnits", this.appendUnitsHandler);
-        DefantasyContract.off("Attack", this.attackHandler);
+        SixElementsContract.off("JoinGame", this.joinGameHandler);
+        SixElementsContract.off("CreateArmy", this.createArmyHandler);
+        SixElementsContract.off("AppendUnits", this.appendUnitsHandler);
+        SixElementsContract.off("Attack", this.attackHandler);
         super.delete();
     }
 }

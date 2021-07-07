@@ -1,0 +1,1 @@
+{"version":3,"file":"AppendUnitsPopup.d.ts","sourceRoot":"","sources":["../../../src/ui/AppendUnitsPopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAM,KAAK,EAAE,MAAM,gBAAgB,CAAC;AAIpD,MAAM,CAAC,OAAO,OAAO,gBAAiB,SAAQ,KAAK;IAExC,OAAO,EAAE,OAAO,CAAC;IAExB,OAAO,CAAC,KAAK,CAA4B;IACzC,OAAO,CAAC,gBAAgB,CAAU;gBAEtB,CAAC,EAAE,MAAM,EAAE,CAAC,EAAE,MAAM;YAqBlB,aAAa;CAG9B"}

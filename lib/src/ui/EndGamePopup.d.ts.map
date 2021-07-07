@@ -1,0 +1,1 @@
+{"version":3,"file":"EndGamePopup.d.ts","sourceRoot":"","sources":["../../../src/ui/EndGamePopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAC;AACrD,OAAO,EAAE,OAAO,EAAM,KAAK,EAAE,MAAM,gBAAgB,CAAC;AAEpD,MAAM,CAAC,OAAO,OAAO,YAAa,SAAQ,KAAK;IAEpC,OAAO,EAAE,OAAO,CAAC;gBAEZ,MAAM,EAAE,SAAS,EAAE,MAAM,EAAE,MAAM;CAOhD"}

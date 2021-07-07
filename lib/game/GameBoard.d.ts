@@ -6,12 +6,13 @@ export default class GameBoard extends DomNode {
     cells: {
         [position: string]: Cell;
     };
+    checkAllies(address: string, x: number, y: number): boolean;
     constructor();
+    private load;
     private joinGameHandler;
     private createArmyHandler;
     private appendUnitsHandler;
     private attackHandler;
-    private loadBoard;
     delete(): void;
 }
 //# sourceMappingURL=GameBoard.d.ts.map

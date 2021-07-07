@@ -1,16 +1,10 @@
+@import url(https://rsms.me/inter/inter.css);
 /*
 https://github.com/Hanul/sky-css-base
 v0.0.1 | 20210109
 Author: Sim Young Jae
 License: MIT
 */
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/notosanskr/v13/PbykFmXiEBPT4ITbgNA5Cgm20A.otf) format('opentype');
-}
 html,
 body,
 div,
@@ -147,10 +141,6 @@ table {
 html {
   -webkit-tap-highlight-color: transparent;
 }
-html,
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-}
 a,
 button,
 input[type=button],
@@ -181,7 +171,13 @@ input {
   src: url("logo-font.ttf");
 }
 body {
+  font-family: "Inter var";
   background: #faf8ef;
+  font-size: 30px;
+  color: #776e65;
+}
+a {
+  color: inherit;
 }
 .popup {
   position: fixed;
@@ -200,23 +196,42 @@ body {
   padding: 20px;
   margin: auto;
 }
-.game {
-  width: 534px;
-}
-.game h1 {
+.popup > .content > h2 {
   font-family: "Logo Font";
-  font-size: 80px;
+  font-size: 30px;
   color: #776e65;
-}
-.game .game-description {
-  font-size: 18px;
-  color: #776e65;
-}
-.game .game-board-container {
   text-align: center;
-  padding: 20px 0;
+  margin-bottom: 20px;
 }
-.game .button-container:after {
+#help {
+  text-align: center;
+}
+#help > p {
+  padding: 100px 20px 30px;
+  line-height: 1.2em;
+}
+#help > a {
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+#game {
+  padding-top: 20px;
+}
+#game > h1 {
+  font-family: "Logo Font";
+  font-size: 70px;
+  color: #776e65;
+  text-align: center;
+}
+#game > .season-panel {
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+#game > .season-panel:after {
   content: " ";
   display: block;
   font-size: 0;
@@ -224,22 +239,49 @@ body {
   clear: both;
   visibility: hidden;
 }
-.game .button-container .button {
+#game > .season-panel > .season {
   float: left;
+}
+#game > .season-panel > .reward {
+  float: right;
+}
+#game > .energy-panel {
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+#game > .energy-panel:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#game > .energy-panel > .energy {
+  float: left;
+  line-height: 42px;
+}
+#game > .energy-panel > .buy-button {
+  float: right;
   background: #8f7a66;
   color: #f9f6f2;
   line-height: 42px;
   padding: 0 20px;
   border-radius: 3px;
 }
-.game .button-container .button:last-of-type {
-  float: right;
-}
 .gameboard {
-  display: inline-grid;
+  margin: auto;
+  display: grid;
   background: #bbada0;
+  grid-gap: 4px;
+  padding: 6px;
+  border-radius: 6px;
 }
 .gameboard .cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
   background: rgba(238, 228, 218, 0.35);
 }
 .gameboard .cell-menu,
@@ -272,30 +314,12 @@ body {
   height: 50px;
   border-radius: 3px;
   background: rgba(238, 228, 218, 0.35);
-}
-@media only screen and (min-width: 960px) {
-  .gameboard {
-    grid-gap: 6px;
-    padding: 6px;
-    border-radius: 6px;
-  }
-  .gameboard .cell {
-    width: 60px;
-    height: 60px;
-    border-radius: 3px;
-  }
-}
-@media only screen and (max-width: 959px) {
-  .gameboard {
-    grid-gap: 7.5px;
-    padding: 7.5px;
-    border-radius: 8px;
-  }
-  .gameboard .cell {
-    width: 75px;
-    height: 75px;
-    border-radius: 4px;
-  }
+  color: #faf8ef;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .army {
   position: relative;
@@ -310,8 +334,8 @@ body {
   border-radius: 4px;
 }
 .army .unit-count {
-  padding: 4px;
-  font-size: 20px;
+  padding: 3px;
+  font-size: 16px;
   font-weight: bold;
   color: #ffffff;
   text-shadow: -2px 0 #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
@@ -346,16 +370,151 @@ body {
   top: calc(50% - 15px);
   transform: rotate(180deg);
 }
-.buy-energy {
-  width: 500px;
+.buy-energy-popup > p {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
-.create-army {
-  width: 500px;
+.buy-energy-popup > input {
+  width: 100%;
+  border: 1px solid #776e65;
+  font-size: 26px;
+  color: #776e65;
+  padding: 10px 0;
+  border-radius: 15px;
+  text-align: center;
 }
-.create-army .army-kind-button.on {
+.buy-energy-popup > footer {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.buy-energy-popup > footer:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.buy-energy-popup > footer > .submit {
+  float: left;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.buy-energy-popup > footer > .cancel {
+  float: right;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.create-army-popup {
+  width: 265px;
+}
+.create-army-popup > p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.create-army-popup .army-kind-button.on {
   outline: 2px solid red;
 }
-.append-units {
-  width: 500px;
+.create-army-popup > input {
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid #776e65;
+  font-size: 26px;
+  color: #776e65;
+  padding: 10px 0;
+  border-radius: 15px;
+  text-align: center;
+}
+.create-army-popup > footer {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.create-army-popup > footer:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.create-army-popup > footer > .submit {
+  float: left;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.create-army-popup > footer > .cancel {
+  float: right;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.append-units-popup > p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.append-units-popup > input {
+  width: 100%;
+  border: 1px solid #776e65;
+  font-size: 26px;
+  color: #776e65;
+  padding: 10px 0;
+  border-radius: 15px;
+  text-align: center;
+}
+.append-units-popup > footer {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.append-units-popup > footer:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.append-units-popup > footer > .submit {
+  float: left;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.append-units-popup > footer > .cancel {
+  float: right;
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
+}
+.end-game-popup {
+  text-align: center;
+}
+.end-game-popup > p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.end-game-popup .army-kind-button.on {
+  outline: 2px solid red;
+}
+.end-game-popup > .confirm {
+  background: #8f7a66;
+  color: #f9f6f2;
+  line-height: 42px;
+  padding: 0 20px;
+  border-radius: 3px;
 }
 

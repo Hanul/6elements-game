@@ -1,1 +1,1 @@
-{"version":3,"file":"PleaseChangeNetwork.d.ts","sourceRoot":"","sources":["../../src/view/PleaseChangeNetwork.ts"],"names":[],"mappings":"AAAA,OAAO,EAAY,OAAO,EAAM,MAAM,gBAAgB,CAAC;AAEvD,MAAM,CAAC,OAAO,OAAO,mBAAoB,SAAQ,OAAO;;CAUvD"}
+{"version":3,"file":"PleaseChangeNetwork.d.ts","sourceRoot":"","sources":["../../src/view/PleaseChangeNetwork.ts"],"names":[],"mappings":"AAAA,OAAO,EAAY,OAAO,EAAM,MAAM,gBAAgB,CAAC;AAGvD,MAAM,CAAC,OAAO,OAAO,mBAAoB,SAAQ,OAAO;;CAyBvD"}

@@ -1,5 +1,6 @@
 import { BigNumber, constants } from "ethers";
 import Config from "../Config";
+import NetworkProvider from "../ethereum/NetworkProvider";
 import Wallet from "../ethereum/Wallet";
 import ArmyData, { ArmyKind } from "../game/ArmyData";
 import SixElementsArtifact from "./artifacts/contracts/SixElements.sol/SixElements.json";
@@ -56,9 +57,24 @@ class SixElementContract extends Contract<SixElements> {
         }
     }
 
+    private async checkBalance(address: string, value: BigNumber) {
+        const balance = await NetworkProvider.getBalance(address);
+        if (balance.lt(value) === true) {
+            alert("Not Enough MATIC.");
+            return false;
+        }
+        return true;
+    }
+
     public async buyEnergy(energy: number): Promise<void> {
-        const contract = await this.loadWalletContract();
-        await contract?.buyEnergy({ value: this.ENERGY_PRICE.mul(energy) });
+        const address = await Wallet.loadAddress();
+        if (address !== undefined) {
+            const value = this.ENERGY_PRICE.mul(energy);
+            if (await this.checkBalance(address, value) === true) {
+                const contract = await this.loadWalletContract();
+                await contract?.buyEnergy({ value });
+            }
+        }
     }
 
     public async createArmy(
@@ -74,9 +90,12 @@ class SixElementContract extends Contract<SixElements> {
             const energyNeed = (await this.getUnitEnergy()).mul(unitCount);
             const playerEnergy = await this.getEnergy(address);
             const energy = energyNeed.gt(playerEnergy) ? energyNeed.sub(playerEnergy) : 0;
+            const value = this.ENERGY_PRICE.mul(energy);
 
-            const contract = await this.loadWalletContract();
-            await contract?.createArmy(x, y, kind, unitCount, { value: this.ENERGY_PRICE.mul(energy) });
+            if (await this.checkBalance(address, value) === true) {
+                const contract = await this.loadWalletContract();
+                await contract?.createArmy(x, y, kind, unitCount, { value });
+            }
         }
     }
 
@@ -92,9 +111,12 @@ class SixElementContract extends Contract<SixElements> {
             const energyNeed = (await this.getUnitEnergy()).mul(unitCount);
             const playerEnergy = await this.getEnergy(address);
             const energy = energyNeed.gt(playerEnergy) ? energyNeed.sub(playerEnergy) : 0;
+            const value = this.ENERGY_PRICE.mul(energy);
 
-            const contract = await this.loadWalletContract();
-            await contract?.appendUnits(x, y, unitCount, { value: this.ENERGY_PRICE.mul(energy) });
+            if (await this.checkBalance(address, value) === true) {
+                const contract = await this.loadWalletContract();
+                await contract?.appendUnits(x, y, unitCount, { value });
+            }
         }
     }
 

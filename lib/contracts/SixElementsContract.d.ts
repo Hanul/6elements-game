@@ -14,6 +14,7 @@ declare class SixElementContract extends Contract<SixElements> {
     getReward(season: number): Promise<BigNumber>;
     getEnergy(address: string): Promise<BigNumber>;
     getArmy(x: number, y: number): Promise<ArmyData | undefined>;
+    private checkBalance;
     buyEnergy(energy: number): Promise<void>;
     createArmy(x: number, y: number, kind: ArmyKind, unitCount: number): Promise<void>;
     appendUnits(x: number, y: number, unitCount: number): Promise<void>;
